@@ -108,6 +108,11 @@ ul.clean li { padding: 4px 0; }
 .project-card .kicker { color: #ff6874; }
 .project-card h3 { font-family: "Playfair Display", Georgia, serif; margin: 7px 0 8px; font-size: 1.45rem; }
 .project-card p { color: #c5c9d1; margin: 0; }
+.skill-groups { display: grid; gap: 26px; }
+.skill-group { background: #0e1015; border: 1px solid #282a32; border-radius: 8px; padding: 22px; }
+.skill-group h3 { color: #f3f4f8; font-family: "Playfair Display", Georgia, serif; font-size: 1.15rem; margin: 0 0 18px; }
+.skill-category + .skill-category { margin-top: 20px; }
+.skill-category h4 { color: #ff6874; font-size: .83rem; letter-spacing: .04em; margin: 0 0 10px; }
 .skills-wrap { display: flex; flex-wrap: wrap; gap: 11px; }
 .skill { background: #101116; border: 1px solid #343640; color: #d9dce3; padding: 10px 14px; border-radius: 6px; font-weight: 500; font-size: .88rem; }
 .skill.primary { border-color: #a62531; background: #1b1013; color: #ff727d; }
@@ -200,3 +205,71 @@ footer .container { display: flex; flex-wrap: wrap; justify-content: space-betwe
 @media (max-width: 360px) {
   .hero-actions .btn { padding: 10px 12px; font-size: .84rem; }
 }
+
+/* Red glow, sparkle, and liquid-like depth accents. */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: .7;
+  background:
+    radial-gradient(ellipse at 78% 83%, rgba(255, 24, 48, .27), transparent 30%),
+    radial-gradient(ellipse at 85% 76%, rgba(255, 64, 80, .17), transparent 22%),
+    radial-gradient(circle at 76% 25%, rgba(255, 96, 108, .8) 0 1px, transparent 2px),
+    radial-gradient(circle at 91% 43%, rgba(255, 96, 108, .75) 0 1px, transparent 2px),
+    radial-gradient(circle at 69% 58%, rgba(255, 96, 108, .65) 0 1px, transparent 2px),
+    radial-gradient(circle at 96% 69%, rgba(255, 96, 108, .7) 0 1px, transparent 2px);
+  animation: red-shimmer 6s ease-in-out infinite alternate;
+}
+.hero::after {
+  filter: drop-shadow(0 0 12px rgba(255, 24, 48, .5));
+}
+.profile-card {
+  box-shadow: 0 0 22px rgba(255, 24, 48, .16), 0 18px 45px rgba(0, 0, 0, .4), inset 0 1px rgba(255, 120, 130, .12);
+  transition: transform .35s ease, box-shadow .35s ease;
+}
+.profile-card:hover {
+  transform: perspective(900px) rotateY(-2deg) translateY(-4px);
+  box-shadow: 0 0 34px rgba(255, 24, 48, .3), 0 24px 48px rgba(0, 0, 0, .5), inset 0 1px rgba(255, 120, 130, .2);
+}
+.btn-primary {
+  box-shadow: 0 7px 22px rgba(255, 38, 56, .24), inset 0 1px rgba(255, 255, 255, .22);
+}
+.btn-primary:hover {
+  box-shadow: 0 10px 30px rgba(255, 38, 56, .42), inset 0 1px rgba(255, 255, 255, .28);
+}
+@keyframes red-shimmer {
+  from { opacity: .45; transform: scale(1); }
+  to { opacity: .9; transform: scale(1.015); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero::before { animation: none; }
+  .profile-card { transition: none; }
+}
+
+.skill-group summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  color: #f3f4f8;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  cursor: pointer;
+  list-style: none;
+}
+.skill-group summary::-webkit-details-marker { display: none; }
+.skill-group summary::after {
+  content: "+";
+  color: var(--blue);
+  font: 700 1.5rem/1 "Segoe UI", Arial, sans-serif;
+}
+.skill-group[open] summary::after { content: "−"; }
+.skill-group summary:focus-visible { outline: 2px solid #ff5966; outline-offset: 5px; }
+.skill-group[open] summary { margin-bottom: 18px; }
+
+
+
